@@ -1,20 +1,22 @@
-
+import React, { useState } from 'react'
 import './App.css';
-import React, { Component } from 'react'
 import Navbar from './component/Navbar';
 import News from './component/News';
 import LoadingBar from 'react-top-loading-bar'
 
-export default class App extends Component {
-  pageSize= 5;
-  apiKey = process.env.REACT_APP_NEWS_API
-  state = {
-    progress:0
-  }
-  setProgress = (progress) => {
-    this.setState({progress: progress})
-  }
-  render() {
+const App = () => {
+
+  const pageSize= 5;
+  const apiKey = process.env.REACT_APP_NEWS_API
+
+  // state = {
+  //   progress:0
+  // }
+  const [progress, setProgress] = useState(0)
+
+  // setProgress = (progress) => {
+  //   this.setState({progress: progress})
+  // }
     return (
     
     
@@ -23,12 +25,13 @@ export default class App extends Component {
         <LoadingBar
         height={3}
         color='#f11946'
-        progress={this.state.progress}
+        progress={progress}
       />
-          <News setProgress={this.setProgress}  key="general" apiKey={this.apiKey} pageSize={this.pageSize} country="in"   category="general"/>
+          <News setProgress={setProgress}  key="general" apiKey={apiKey} pageSize={pageSize} country="in"   category="general"/>
       </div>
     
     )
-  }
+  
 }
 
+export default App;
